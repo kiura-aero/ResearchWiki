@@ -1,0 +1,40 @@
+import org.orekit.frames.*; // coordinate frames (ie. EME2000, ITRF)
+import org.orekit.orbits.*; // orbit classes (keplerian, cartesian)
+import org.orekit.time.*; // Orekit's time system
+import org.orekit.utils.*; // extra tools and constants
+
+public class Main {
+    public static void main(String[] args) {
+    	// orekit often throws exceptions (errors), so wrap everything in try/catch to show errors instead of crashing
+        try {
+            // Load Orekit data
+            DataProvidersManager manager = DataProvidersManager.getInstance(); 
+            // get global orekit data maanger and tell orekit where the orekit data folder is 
+            manager.addProvider(new DirectoryCrawler(new java.io.File("C:\\Users\\kiura\\eclipse-workspace\\OrekitTest\\orekit")));
+            
+            // Orekit uses AbsoluteDate not normal java dates [Year: 2023; Month: 1; Day: 1; Time scale: UTC]
+            AbsoluteDate date = new AbsoluteDate(2023, 1, 1, TimeScalesFactory.getUTC());
+            // Frame is the coordinate system; Earth's Mean Equator frame at year 2000
+            Frame inertialFrame = FramesFactory.getEME2000();
+
+            // Dummy orbit example
+            KeplerianOrbit orbit = new KeplerianOrbit(
+                7000000, // semi-axis major (meters)
+                0.001, // eccentricity  
+                0.1, // inclination (rad)
+                0, // argument of perigee (rad)
+                0, // RAAN
+                0, // true anamoly
+                PositionAngle.TRUE, // angle type
+                inertialFrame, // reference frame
+                date, // epoch
+                Constants.EGM96_EARTH_MU // earth gravitational parameter
+            );
+
+            // prints the semi-major axis
+            System.out.println("Semi-major axis: " + orbit.getA());
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
