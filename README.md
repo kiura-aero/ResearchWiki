@@ -1,5 +1,5 @@
 # OREKIT
-Documenting everything I do with Orekit, starting with the very basics.
+Documenting everything I do with Orekit, starting with the very basics. Documentation can be found in the Wiki.
 > https://www.orekit.org/
 Everything is documented in the Wiki.
 
