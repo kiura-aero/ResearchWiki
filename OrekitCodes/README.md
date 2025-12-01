@@ -1,19 +1,48 @@
 # Orekit Orbit Simulation – Overview of Codes
 Scroll to the bottom for Prerequisites.
 
-## firstprogram.java
+## `firstprogram.java`
 - Initializes **Orekit** by loading the `orekit-data` directory.
 - Uses the **new DataContext API** (Orekit 11+).
 - Creates an `AbsoluteDate` to confirm time system is working.
 - Prints confirmation that Orekit data loaded successfully.
 - Provides a basic template for all future Orekit-based simulations.
 
-## SimpleSimulation.java
+## `SimpleSimulation.java`
 - Create a **Maven Java project** in Eclipse using **Orekit**.
 - Add **orekit-data** and properly load it at runtime.
 - Implement a **simple orbit propagator** that outputs position & velocity over time.
 - Add a **minimal HTTP endpoint** that serves the satellite’s current state as JSON (for Open MCT polling).
 - Include troubleshooting notes for **Hipparchus**, classpath issues, and orekit-data configuration.
+
+> Paste the following into the dependencies section of the `pom.xml` file of the project. 
+```java
+<dependencies>
+    <dependency>
+        <groupId>org.orekit</groupId>
+        <artifactId>orekit</artifactId>
+        <version>12.0.2</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.hipparchus</groupId>
+        <artifactId>hipparchus-core</artifactId>
+        <version>3.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.hipparchus</groupId>
+        <artifactId>hipparchus-geometry</artifactId>
+        <version>3.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.hipparchus</groupId>
+        <artifactId>hipparchus-ode</artifactId>
+        <version>3.1</version>
+    </dependency>
+</dependencies>
+```
 
 ## Prerequisites
 
